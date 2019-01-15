@@ -7,6 +7,7 @@ import android.os.SystemClock;
 import android.app.PendingIntent;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
+import android.app.NotificationChannel;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -46,6 +47,8 @@ public class Notification {
         this.context = context;
         this.id = id;
         this.attributes = attributes;
+
+        initChannels(context);
     }
 
     /**
@@ -109,10 +112,24 @@ public class Notification {
     }
 
     /**
+     * Create channel
+     */
+    public void initChannels(Context context) {
+        if (Build.VERSION.SDK_INT < 26) {
+            return;
+        }
+
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel channel = new NotificationChannel("default", attributes.channelId, NotificationManager.IMPORTANCE_DEFAULT);
+        if (attributes.channelDescription != null) channel.setDescription(attributes.channelDescription);
+        notificationManager.createNotificationChannel(channel);
+    }
+
+    /**
      * Build notification
      */
     public android.app.Notification build() {
-        android.support.v7.app.NotificationCompat.Builder notificationBuilder = new android.support.v7.app.NotificationCompat.Builder(context);
+        android.support.v4.app.NotificationCompat.Builder notificationBuilder = new android.support.v4.app.NotificationCompat.Builder(context, "default");
 
         notificationBuilder
             .setContentTitle(attributes.subject)
@@ -189,7 +206,7 @@ public class Notification {
 
         if (attributes.bigText != null) {
             notificationBuilder
-              .setStyle(new android.support.v7.app.NotificationCompat.BigTextStyle()
+              .setStyle(new NotificationCompat.BigTextStyle()
               .bigText(attributes.bigText));
         } else if (attributes.bigStyleUrlImgage != null && attributes.bigStyleUrlImgage != "") {
             Bitmap bigPicture = null;
