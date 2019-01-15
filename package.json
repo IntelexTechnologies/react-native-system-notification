@@ -1,21 +1,13 @@
 {
-  "name": "react-native-system-notification",
-  "version": "0.2.1",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Neson/react-native-system-notification"
-  },
+  "name": "react-native-progress-notification",
+  "version": "1.0.0",
   "nativePackage": true,
-  "description": "Notification for React Native",
-  "author": "Neson <neson@dex.tw>",
-  "homepage": "https://github.com/Neson/react-native-system-notification",
-  "license": "MIT",
+  "main": "index.js",
+  "description": "Progress Notification for React Native",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "keywords": [
-    "react-native",
-    "android",
-    "notification"
-  ],
-  "peerDependencies": {
-    "react-native": ">=0.29.0"
-  }
+    "react-native"
+  ]
 }
