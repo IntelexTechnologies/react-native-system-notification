@@ -47,7 +47,7 @@ const methodsDecEnc = {
       return JSON.stringify(val);
     }
   },
-  smallIcon: val => !val ? 'ic_launcher' : '',
+  smallIcon: val => !val ? 'ic_launcher' : val,
   id: val => !val ? parseInt(Math.random() * 100000) : val,
   action: val => !val ? 'DEFAULT' : val,
   autoClear: val => !val ? true : val,
