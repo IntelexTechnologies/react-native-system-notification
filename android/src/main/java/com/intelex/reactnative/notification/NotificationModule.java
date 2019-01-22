@@ -82,7 +82,12 @@ public class NotificationModule extends ReactContextBaseJavaModule {
         try {
             Notification notification = mNotificationManager.delete(notificationID);
 
-            successCallback.invoke(notification.getAttributes().asReadableMap());
+            NotificationAttributes attrs = notification.getAttributes();
+            if (attrs != null) {
+                successCallback.invoke(attrs.asReadableMap());
+            } else {
+                errorCallback.invoke("Attributes are null");
+            }
 
         } catch (Exception e) {
             errorCallback.invoke(e.getMessage());

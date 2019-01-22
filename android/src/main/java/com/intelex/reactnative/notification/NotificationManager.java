@@ -92,6 +92,8 @@ public class NotificationManager {
      * Delete notification by id
      */
     public Notification delete(Integer notificationID) {
+        
+        Log.i("ReactSystemNotification", "Notification search");
         return find(notificationID).delete();
     }
 

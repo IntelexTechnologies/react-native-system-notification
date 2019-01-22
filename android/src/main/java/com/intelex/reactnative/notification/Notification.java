@@ -102,6 +102,7 @@ public class Notification {
      * Cancel notification
      */
     public Notification delete() {
+        Log.i("ReactSystemNotification", "Delete start: " + id);
         getSysNotificationManager().cancel(id);
 
         deleteFromPreferences();
@@ -119,7 +120,12 @@ public class Notification {
             return;
         }
 
+        if (attributes == null) {
+            return;
+        }
+
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        // Log.i("ReactSystemNotification", "attibutes.channelId: " + attributes.channelId);
         NotificationChannel channel = new NotificationChannel("default", attributes.channelId, NotificationManager.IMPORTANCE_DEFAULT);
         if (attributes.channelDescription != null) channel.setDescription(attributes.channelDescription);
         notificationManager.createNotificationChannel(channel);

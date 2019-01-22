@@ -188,6 +188,7 @@ public class NotificationAttributes {
         if (id != null) writableMap.putInt("id", id);
         if (subject != null) writableMap.putString("subject", subject);
         if (message != null) writableMap.putString("message", message);
+        if (channelId != null) writableMap.putString("channelId", channelId);
         if (isOngoing != null) writableMap.putBoolean("isOngoing", isOngoing);
         if (channelDescription != null) writableMap.putString("channelDescription", channelDescription);
         if (action != null) writableMap.putString("action", action);
