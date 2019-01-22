@@ -135,9 +135,12 @@ public class Notification {
             .setContentTitle(attributes.subject)
             .setContentText(attributes.message)
             .setSmallIcon(context.getResources().getIdentifier(attributes.smallIcon, "mipmap", context.getPackageName()))
-            .setOngoing(true)
             .setAutoCancel(attributes.autoClear)
             .setContentIntent(getContentIntent());
+
+        if (attributes.isOngoing) {
+            notificationBuilder.setOngoing(attributes.isOngoing);
+        }
 
         if (attributes.priority != null) {
             notificationBuilder.setPriority(attributes.priority);

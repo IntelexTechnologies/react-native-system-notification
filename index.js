@@ -55,6 +55,7 @@ const methodsDecEnc = {
   sound: val => val === undefined ? 'default' : val,
   vibrate: val => val === undefined ? 'default' : val,
   lights: val => val === undefined ? 'default' : val,
+  isOngoing: val => val === true,
 };
 
 function normilizeAttrsLoop(attrs, func = 'enc') {
