@@ -10,9 +10,8 @@ const RNPN = {
   create(attrs = {}) {
     return new Promise((resolve, reject) => {
       NotificationModule.rnGetAppName((e) => {}, (appName) => {
-        if (!attrs.subject) {
-           attrs.subject = appName;
-        }
+        // attrs.subject = appName;
+        attrs.appName = appName
 
         attrs = encNativeNotification(attrs);
 
@@ -56,6 +55,7 @@ const methodsDecEnc = {
   vibrate: val => val === undefined ? 'default' : val,
   lights: val => val === undefined ? 'default' : val,
   isOngoing: val => val === true,
+  showAppName: val => val === true,
 };
 
 function normilizeAttrsLoop(attrs, func = 'enc') {

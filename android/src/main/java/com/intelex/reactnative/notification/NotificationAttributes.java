@@ -19,6 +19,8 @@ public class NotificationAttributes {
     public String message;
     public String channelId;
     public Boolean isOngoing;
+    public Boolean showAppName;
+    public String appName;
     public String channelDescription;
     public String action;
     public String payload;
@@ -121,6 +123,8 @@ public class NotificationAttributes {
 
         if (readableMap.hasKey("delayed")) delayed = readableMap.getBoolean("delayed");
         isOngoing = readableMap.hasKey("isOngoing") ? readableMap.getBoolean("isOngoing") : false;
+        showAppName = readableMap.hasKey("showAppName") ? readableMap.getBoolean("showAppName") : false;
+        if (readableMap.hasKey("appName")) appName = readableMap.getString("appName");
         if (readableMap.hasKey("delay")) delay = readableMap.getInt("delay");
 
         if (readableMap.hasKey("scheduled")) scheduled = readableMap.getBoolean("scheduled");
@@ -193,6 +197,9 @@ public class NotificationAttributes {
         if (channelDescription != null) writableMap.putString("channelDescription", channelDescription);
         if (action != null) writableMap.putString("action", action);
         if (payload != null) writableMap.putString("payload", payload);
+
+        if (showAppName != null) writableMap.putBoolean("showAppName", showAppName);
+        if (appName != null) writableMap.putString("appName", appName);
 
         if (delayed != null) writableMap.putBoolean("delayed", delayed);
         if (delay != null) writableMap.putInt("delay", delay);

@@ -138,11 +138,25 @@ public class Notification {
         android.support.v4.app.NotificationCompat.Builder notificationBuilder = new android.support.v4.app.NotificationCompat.Builder(context, "default");
 
         notificationBuilder
-            .setContentTitle(attributes.subject)
             .setContentText(attributes.message)
             .setSmallIcon(context.getResources().getIdentifier(attributes.smallIcon, "mipmap", context.getPackageName()))
             .setAutoCancel(attributes.autoClear)
             .setContentIntent(getContentIntent());
+        
+        if (attributes.showAppName) {
+            if (Build.VERSION.SDK_INT < 26) {
+                // should add app name
+                Log.i("ReactSystemNotification", "showAppName and need to show app name" + attributes.subject);
+                notificationBuilder.setContentTitle(attributes.appName + " " + attributes.subject);
+            } else {
+                // app name will be shown by OS                
+                Log.i("ReactSystemNotification", "showAppName but no need to show app name" + attributes.subject);
+                notificationBuilder.setContentTitle(attributes.subject);
+            }
+        } else {
+                Log.i("ReactSystemNotification", "no showAppName" + attributes.subject);
+            notificationBuilder.setContentTitle(attributes.subject);
+        }
 
         if (attributes.isOngoing) {
             notificationBuilder.setOngoing(attributes.isOngoing);
