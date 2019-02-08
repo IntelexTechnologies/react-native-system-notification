@@ -126,6 +126,7 @@ public class Notification {
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         String channelName = attributes.channelName == null ? attributes.channelId : attributes.channelName;
+        Log.i("ReactSystemNotification", "Channel name: " + channelName + " Name from attrs: " + attributes.channelName)
         NotificationChannel channel = new NotificationChannel(attributes.channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
         if (attributes.channelDescription != null) channel.setDescription(attributes.channelDescription);
         notificationManager.createNotificationChannel(channel);
