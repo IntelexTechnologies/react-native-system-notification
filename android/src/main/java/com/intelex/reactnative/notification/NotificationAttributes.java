@@ -18,6 +18,7 @@ public class NotificationAttributes {
     public String subject;
     public String message;
     public String channelId;
+    public String channelName;
     public Boolean isOngoing;
     public Boolean showAppName;
     public String appName;
@@ -117,6 +118,7 @@ public class NotificationAttributes {
         if (readableMap.hasKey("subject")) subject = readableMap.getString("subject");
         if (readableMap.hasKey("message")) message = readableMap.getString("message");
         if (readableMap.hasKey("channelId")) channelId = readableMap.getString("channelId");
+        if (readableMap.hasKey("channelName")) channelName = readableMap.getString("channelName");
         if (readableMap.hasKey("channelDescription")) channelDescription = readableMap.getString("channelDescription");
         if (readableMap.hasKey("action")) action = readableMap.getString("action");
         if (readableMap.hasKey("payload")) payload = readableMap.getString("payload");
@@ -193,6 +195,7 @@ public class NotificationAttributes {
         if (subject != null) writableMap.putString("subject", subject);
         if (message != null) writableMap.putString("message", message);
         if (channelId != null) writableMap.putString("channelId", channelId);
+        if (channelName != null) writableMap.putString("channelName", channelName);
         if (isOngoing != null) writableMap.putBoolean("isOngoing", isOngoing);
         if (channelDescription != null) writableMap.putString("channelDescription", channelDescription);
         if (action != null) writableMap.putString("action", action);

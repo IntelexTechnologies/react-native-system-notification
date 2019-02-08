@@ -125,8 +125,8 @@ public class Notification {
         }
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        // Log.i("ReactSystemNotification", "attibutes.channelId: " + attributes.channelId);
-        NotificationChannel channel = new NotificationChannel("default", attributes.channelId, NotificationManager.IMPORTANCE_DEFAULT);
+        String channelName = attributes.channelName == null ? attributes.channelId : attributes.channelName;
+        NotificationChannel channel = new NotificationChannel(attributes.channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
         if (attributes.channelDescription != null) channel.setDescription(attributes.channelDescription);
         notificationManager.createNotificationChannel(channel);
     }
