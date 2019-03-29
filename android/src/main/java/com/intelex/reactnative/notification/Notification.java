@@ -13,7 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.net.Uri;
-import static android.support.v7.app.NotificationCompat.InboxStyle;
+import static android.support.v4.app.NotificationCompat.InboxStyle;
 
 import java.lang.System;
 import java.net.URL;
@@ -26,7 +26,7 @@ import com.intelex.reactnative.notification.NotificationAttributes;
 import com.intelex.reactnative.notification.NotificationEventReceiver;
 
 import android.util.Base64;
-import android.support.v7.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
