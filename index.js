@@ -32,17 +32,20 @@ const RNPN = {
 
 const methodsDecEnc = {
   payload: (val, func) => {
-    if (func === 'dec') {
+    if (typeof val === 'string') {
+      return val;
+    }
+    else if (func === 'dec') {
       if (!val) {
         return {};
       } else {
         return JSON.parse(val);
       }
-    } else {
+    }
+    else {
       if (!val) {
         val = {};
       }
-
       return JSON.stringify(val);
     }
   },

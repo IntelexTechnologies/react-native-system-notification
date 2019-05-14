@@ -357,13 +357,19 @@ public class Notification {
         return (SharedPreferences) context.getSharedPreferences(com.intelex.reactnative.notification.NotificationManager.PREFERENCES_KEY, Context.MODE_PRIVATE);
     }
 
-    private PendingIntent getContentIntent() {
-        Intent intent = new Intent(context, NotificationEventReceiver.class);
-
+    private PendingIntent getContentIntent() {       
+        Intent intent = new Intent();
         intent.putExtra(NotificationEventReceiver.NOTIFICATION_ID, id);
         intent.putExtra(NotificationEventReceiver.ACTION, attributes.action);
         intent.putExtra(NotificationEventReceiver.PAYLOAD, attributes.payload);
 
-        return PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        if(attributes.action != null && "mainActivity".equals(attributes.action)){
+            intent.setClassName(context, attributes.payload);
+            return PendingIntent.getActivity(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        }
+        else {
+            intent.setClass(context, NotificationEventReceiver.class);
+            return PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);           
+        }
     }
 }
