@@ -1,6 +1,11 @@
 package com.intelex.reactnative.notification;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.util.HashMap;
+import java.util.Iterator;
+
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.ReadableMap;
@@ -55,6 +60,12 @@ public class WritableNativeMap extends HashMap implements WritableMap {
     @Override
     public ReadableType getType(String name) { return null; }
 
+    @NonNull
+    @Override
+    public Iterator<Entry<String, Object>> getEntryIterator() {
+        return null;
+    }
+
     @Override
     public ReadableMapKeySetIterator keySetIterator() { return null; }
 
@@ -82,12 +93,12 @@ public class WritableNativeMap extends HashMap implements WritableMap {
     }
 
     @Override
-    public void putArray(String key, WritableArray value) {
+    public void putArray(@NonNull String key, @Nullable ReadableArray value) {
         this.put(key, value);
     }
 
     @Override
-    public void putMap(String key, WritableMap value) {
+    public void putMap(@NonNull String key, @Nullable ReadableMap value) {
         this.put(key, value);
     }
 
@@ -103,4 +114,9 @@ public class WritableNativeMap extends HashMap implements WritableMap {
 
     @Override
     public void merge(ReadableMap source) {}
+
+    @Override
+    public WritableMap copy() {
+        return null;
+    }
 }
